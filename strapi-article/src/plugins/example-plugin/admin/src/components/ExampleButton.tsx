@@ -2,19 +2,14 @@ import { Button } from '@strapi/design-system';
 import { unstable_useContentManagerContext as useContentManagerContext } from '@strapi/strapi/admin';
 import axios from 'axios';
 
-type Context = {
-  values: { slug: string; section: string };
-  disabled: boolean;
-};
-
 const ExampleButton = () => {
-  const { model, form } = useContentManagerContext();
-  const { slug, section } = (form as Context).values;
+  const { id, model, form } = useContentManagerContext();
 
-  const strapiUrl = window.location.origin;
-  const token = localStorage.getItem('jwtToken');
-  console.log('token', token);
   const testFetch = async () => {
+    console.log('id = ', id);
+    console.log('model = ', model);
+    console.log('form = ', form);
+
     const urlTestFetch = await axios.get(`/api/example-controller`);
     console.log('urlTestFetch: ', urlTestFetch);
   };
